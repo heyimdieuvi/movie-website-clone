@@ -1,0 +1,35 @@
+.header {
+  background-color: rgba(71, 71, 71, 0.25);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 350px;
+  gap: 30px;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  &__logo {
+    img {
+      width: 10%;
+      object-fit: fill;
+    }
+  }
+  &__nav {
+    ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      
+      li {
+        font-size: 18px;
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
