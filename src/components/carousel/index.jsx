@@ -11,12 +11,12 @@ import "./index.scss";
 // import required modules
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
-export default function App() {
+export default function Carousel({numberOfSlides}) {
   return (
     <>
       <Swiper
+        slidesPerView={numberOfSlides}
         pagination={true}
-        
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
@@ -32,6 +32,9 @@ export default function App() {
             src="https://th.bing.com/th/id/R.87c4632fe21265c748a36d55625e68db?rik=BobzwEPqdPVs9w&riu=http%3a%2f%2fimages2.fanpop.com%2fimage%2fphotos%2f12800000%2fInception-Banner-inception-2010-12831726-2000-919.jpg&ehk=vbT3fLpSwhlbe%2f5LQTiUVQOC%2bQdWLlogknzYzOXw8BE%3d&risl=&pid=ImgRaw&r=0"
             alt=""
           />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://thedesignest.net/wp-content/uploads/2020/03/Avatar-Movie-Poster-1140x570.jpg" alt="" />
         </SwiperSlide>
       </Swiper>
     </>

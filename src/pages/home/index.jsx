@@ -6,7 +6,8 @@ function HomePage() {
   return (
     <div>
       <Header />
-      <Carousel />
+      <Carousel numberOfSlides={1} />
+      <Carousel numberOfSlides={3} />
     </div>
     
   )
