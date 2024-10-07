@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+/* eslint-disable react/prop-types */
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -10,8 +10,21 @@ import "./index.scss";
 
 // import required modules
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-export default function Carousel({numberOfSlides}) {
+// set default value props = 1, can change other numbers
+export default function Carousel({numberOfSlides = 1, category = 'Comedy'}) {
+  const [movies, setMovies] = useState([]);
+  const fetchMovies = async () => {
+    const response = await axios.get('https://66f961f6afc569e13a989d9d.mockapi.io/Movies');
+    setMovies(response.data);
+
+  }
+  useEffect(() => {
+    fetchMovies();
+  }, []); //load data lene lần đầu
+  
   return (
     <>
       <Swiper
@@ -23,19 +36,14 @@ export default function Carousel({numberOfSlides}) {
         }}
         modules={[Autoplay, Pagination, Navigation]}
         className="carousel"
-      >
-        <SwiperSlide>
-          <img src="https://wallpapercave.com/wp/wp8451143.jpg" alt="" />
+      > 
+      {/* filter in carousel */}
+      {/* mapping each movie => SwiperSlide */}
+      {movies.filter(movie => movie.category === category).map((movie) => (
+        <SwiperSlide key={movie.id}>
+          <img src={movie.poster_path} alt="" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://th.bing.com/th/id/R.87c4632fe21265c748a36d55625e68db?rik=BobzwEPqdPVs9w&riu=http%3a%2f%2fimages2.fanpop.com%2fimage%2fphotos%2f12800000%2fInception-Banner-inception-2010-12831726-2000-919.jpg&ehk=vbT3fLpSwhlbe%2f5LQTiUVQOC%2bQdWLlogknzYzOXw8BE%3d&risl=&pid=ImgRaw&r=0"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://thedesignest.net/wp-content/uploads/2020/03/Avatar-Movie-Poster-1140x570.jpg" alt="" />
-        </SwiperSlide>
+      ))}
       </Swiper>
     </>
   );

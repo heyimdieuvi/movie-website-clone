@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Table, Button, Modal, Form, Input, Image, Upload } from "antd";
 import axios from "axios";
@@ -39,7 +39,7 @@ function MovieManagement() {
   //anonymous function inside useEffect will run when the component is unmounted
   // co the dung function () {} hoac () => {} de viet function
   //dau [] trong useEffect la dependency, neu co [] thi useEffect se chay 1 lan sau khi component duoc mounted
-  React.useEffect(() => {
+  useEffect(() => {
     fetchMovies();
   }, []);
   const handleOpenModal = () => {
